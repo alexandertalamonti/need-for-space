@@ -40,9 +40,9 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket [Plate: " + plate + 
-               ", Violation: " + reason + 
-               ", Date/Time: " + dateTime + 
                ", Spot: " + spotId + 
+               ", Date/Time: " + dateTime + 
+               ", Reason: " + reason + 
                ", Status: " + (resolved ? "Resolved" : "Pending") + "]";
     }
 }
