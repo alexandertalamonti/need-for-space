@@ -37,7 +37,12 @@ public class Ticket {
         this.resolved = true;
     }
 
-    // @Ander build a toString() method here
-    // in order to satisfy the View Ticket History, View Violations, and View Spot/Car Information
-    // use cases
+    @Override
+    public String toString() {
+        return "Ticket [Plate: " + plate + 
+               ", Violation: " + reason + 
+               ", Date/Time: " + dateTime + 
+               ", Spot: " + spotId + 
+               ", Status: " + (resolved ? "Resolved" : "Pending") + "]";
+    }
 }
