@@ -26,7 +26,12 @@ public class TowEvent {
     public String getReason() {
         return reason;
     }
-    // @Ander build a toString() method here
-    // in order to satisfy the View Ticket History, View Violations, and View Spot/Car Information
-    // use cases
+
+    @Override
+    public String toString() {
+        return "Towed [Plate: " + plate +
+               ", Spot: " + spotId +
+               ", Date/Time: " + dateTime +
+               ", Reason: " + reason + "]";
+    }
 }
