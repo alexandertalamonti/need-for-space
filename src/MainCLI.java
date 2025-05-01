@@ -193,7 +193,7 @@ public class MainCLI {
                 String decision = scanner.nextLine().trim();
                 if (decision.equalsIgnoreCase("y")) {
                     controller.unparkCar(spot);
-                    controller.saveAll();
+                    controller.saveAll(); //unpark car implicitly calls saveAll(), so is this just here for safety @anthonyuri?
                     System.out.println("✅ Unparked.");
                 }
             } else {
@@ -206,7 +206,7 @@ public class MainCLI {
             String decision = scanner.nextLine().trim();
             if (decision.equalsIgnoreCase("y")) {
                 controller.parkCar(currentCar.getPlate(), spot.getSpotId());
-                controller.saveAll();
+                controller.saveAll(); //parkCar() already implicitly calls saveAll() so we don't need this here @anthonyuri
                 System.out.println("✅ Parked.");
             }
 
