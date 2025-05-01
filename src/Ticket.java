@@ -36,4 +36,8 @@ public class Ticket {
     public void resolveTicket() {
         this.resolved = true;
     }
+
+    // @Ander build a toString() method here
+    // in order to satisfy the View Ticket History, View Violations, and View Spot/Car Information
+    // use cases
 }
