@@ -1,1 +1,4 @@
 *.class
+
+# Ignore data
+data/
