@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class FileManager {
-    private static final String CAR_FILE = "data/cars.txt";
-    private static final String SPOT_FILE = "data/spots.txt";
-    private static final String TICKET_FILE = "data/tickets.txt";
-    private static final String TOW_FILE = "data/tows.txt";
+    private static final String CAR_FILE = "../data/cars.txt";
+    private static final String SPOT_FILE = "../data/spots.txt";
+    private static final String TICKET_FILE = "../data/tickets.txt";
+    private static final String TOW_FILE = "../data/tows.txt";
 
     // this is car section 
     public List<Car> loadCars() {
@@ -55,11 +55,18 @@ public class FileManager {
                 }
             }
         } catch (IOException e) {
-            System.out.println("No spot data found. Generating default lot.");
+            System.out.println("⚠️ No spot file found. Generating default lot.");
             return generateDefaultSpots();
         }
+    
+        if (spots.isEmpty()) {
+            System.out.println("⚠️ Empty spot file detected. Generating default lot.");
+            return generateDefaultSpots();
+        }
+    
         return spots;
     }
+    
 
     public void saveSpots(List<ParkingSpot> spots) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(SPOT_FILE))) {
@@ -75,16 +82,24 @@ public class FileManager {
     // need this for the start/intial 
     public List<ParkingSpot> generateDefaultSpots() {
         List<ParkingSpot> spots = new ArrayList<>();
-        spots.add(new ParkingSpot("A1", SpotType.COMPACT));
-        spots.add(new ParkingSpot("A2", SpotType.COMPACT));
-        spots.add(new ParkingSpot("B1", SpotType.STANDARD));
-        spots.add(new ParkingSpot("B2", SpotType.STANDARD));
-        spots.add(new ParkingSpot("C1", SpotType.LARGE));
-        spots.add(new ParkingSpot("C2", SpotType.LARGE));
-        spots.add(new ParkingSpot("D1", SpotType.EV));
-        spots.add(new ParkingSpot("D2", SpotType.EV));
+        SpotType[] types = {
+            SpotType.COMPACT, SpotType.COMPACT, SpotType.STANDARD, SpotType.STANDARD,
+            SpotType.LARGE, SpotType.LARGE, SpotType.EV, SpotType.EV,
+            SpotType.STANDARD, SpotType.COMPACT, SpotType.LARGE, SpotType.EV,
+            SpotType.STANDARD, SpotType.COMPACT, SpotType.LARGE, SpotType.EV
+        };
+    
+        int index = 0;
+        for (char row = 'A'; row <= 'D'; row++) {
+            for (int col = 1; col <= 4; col++) {
+                String spotId = row + String.valueOf(col);
+                spots.add(new ParkingSpot(spotId, types[index++]));
+            }
+        }
+    
         return spots;
     }
+    
 
     // this is tickety section
     public List<Ticket> loadTickets() {
