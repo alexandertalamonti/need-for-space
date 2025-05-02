@@ -309,43 +309,43 @@ public class MainCLI {
     }
 
     // grid display
-
     private void displayLotGrid(boolean isDriver) {
-        System.out.println("\nKey: ⬜ Standard | 🟪 Compact | 🟧 Large | 🟩 EV | 🚗 Occupied\n");
-    
-        Map<SpotType, String> emoji = Map.of(
-            SpotType.STANDARD, "⬜",
-            SpotType.COMPACT, "🟪",
-            SpotType.LARGE, "🟧",
-            SpotType.EV, "🟩"
-        );
-    
-        // col nums
-        System.out.println("     1     2     3     4  ");
-        System.out.println("  +-----+-----+-----+-----+");
-    
-        for (char row = 'A'; row <= 'D'; row++) {
-            // -> where the emoji rows are
-            System.out.print(row + " |");
-            for (int col = 1; col <= 4; col++) {
-                String id = row + String.valueOf(col);
-                ParkingSpot spot = controller.getSpot(id);
-                String symbol;
-                if (spot == null) {
-                    symbol = "❓";
-                } else if (!spot.isAvailable()) {
-                    symbol = "🚗";
-                } else {
-                    symbol = emoji.getOrDefault(spot.getSpotType(), "❓");
-                }
-                System.out.print("  " + symbol + " |");
-            }
-            System.out.println();
-            System.out.println("  +-----+-----+-----+-----+");
-        }
-    
-        // selecting the spot
         while (true) {
+            // Display the grid every time at the start of the loop
+            System.out.println("\nKey: ⬜ Standard | 🟪 Compact | 🟧 Large | 🟩 EV | 🚗 Occupied\n");
+        
+            Map<SpotType, String> emoji = Map.of(
+                SpotType.STANDARD, "⬜",
+                SpotType.COMPACT, "🟪",
+                SpotType.LARGE, "🟧",
+                SpotType.EV, "🟩"
+            );
+        
+            // col nums
+            System.out.println("     1     2     3     4  ");
+            System.out.println("  +-----+-----+-----+-----+");
+        
+            for (char row = 'A'; row <= 'D'; row++) {
+                // -> where the emoji rows are
+                System.out.print(row + " |");
+                for (int col = 1; col <= 4; col++) {
+                    String id = row + String.valueOf(col);
+                    ParkingSpot spot = controller.getSpot(id);
+                    String symbol;
+                    if (spot == null) {
+                        symbol = "❓";
+                    } else if (!spot.isAvailable()) {
+                        symbol = "🚗";
+                    } else {
+                        symbol = emoji.getOrDefault(spot.getSpotType(), "❓");
+                    }
+                    System.out.print("  " + symbol + " |");
+                }
+                System.out.println();
+                System.out.println("  +-----+-----+-----+-----+");
+            }
+        
+            // selecting the spot
             System.out.print("\nEnter spot ID (A1-D4) or 'b' to go back: ");
             String input = scanner.nextLine().toUpperCase();
     
