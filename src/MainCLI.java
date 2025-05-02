@@ -139,11 +139,9 @@ public class MainCLI {
                 }
 
                 System.out.println("\n📦 TOWS:");
-                List<TowEvent> allTows = controller.getTowHistory();
-                for (TowEvent tow : allTows) {
-                    if (tow.getPlate().equalsIgnoreCase(currentCar.getPlate())) {
-                        System.out.println(tow);
-                    }
+                List<TowEvent> tows = controller.getTowsForCar(currentCar.getPlate());
+                for (TowEvent tow : tows) {
+                    System.out.println(tow);
                 }
 
                 System.out.println("\nPress Enter to return.");
@@ -233,13 +231,13 @@ public class MainCLI {
 
             } else if (choice.equals("2")) {
                 System.out.println("\n📋 ALL TICKETS:");
-                List<Ticket> allTickets = controller.getAllViolations();
+                List<Ticket> allTickets = controller.getAllTickets();
                 for (Ticket t : allTickets) {
                     System.out.println(t);
                 }
 
                 System.out.println("\n📦 ALL TOWS:");
-                List<TowEvent> allTows = controller.getTowHistory();
+                List<TowEvent> allTows = controller.getAllTows();
                 for (TowEvent tow : allTows) {
                     System.out.println(tow);
                 }

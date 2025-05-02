@@ -108,7 +108,6 @@ public class ParkingController {
         return result;
     }
 
-    // tow logic
     public void towCar(ParkingSpot spot, String reason) {
         String plate = spot.getAssignedPlate();
         String timestamp = LocalDateTime.now().toString();
@@ -119,13 +118,22 @@ public class ParkingController {
         spot.clearSpot();
         saveAll();
     }    
+
+    public List<TowEvent> getTowsForCar(String plate) {
+        List<TowEvent> result = new ArrayList<>();
+        for (TowEvent tow : tows) {
+            if (tow.getPlate().equalsIgnoreCase(plate)) {
+                result.add(tow);
+            }
+        }
+        return result;
+    }
     
-    
-    public List<Ticket> getAllViolations() {
+    public List<Ticket> getAllTickets() {
         return tickets;
     }
     
-    public List<TowEvent> getTowHistory() {
+    public List<TowEvent> getAllTows() {
         return tows;
     }
 
