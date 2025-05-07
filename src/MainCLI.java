@@ -82,7 +82,7 @@ public class MainCLI {
                     continue;
                 }
 
-                System.out.println("Choose Car Type:");
+                System.out.println("Choose Car Type (enter number):");
                 System.out.println("1. COMPACT");
                 System.out.println("2. STANDARD");
                 System.out.println("3. LARGE");
